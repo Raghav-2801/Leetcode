@@ -1,0 +1,73 @@
+# """
+# This is MountainArray's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+#class MountainArray:
+#    def get(self, index: int) -> int:
+#    def length(self) -> int:
+
+#Input: mountainArr = [1,2,3,4,5,3,1], target = 3
+#Output: 2
+#Explanation: 3 exists in the array, at index=2 and index=5. Return the minimum index, which is 2.
+
+class Solution:
+    def findInMountainArray(self, target: int, mountainArr: 'MountainArray') -> int:
+        n = mountainArr.length()
+        start = 0
+        end =  n - 1
+
+        while start < end:
+            mid = start + (end - start) // 2
+            num = mountainArr.get(mid)
+
+            if num < target:
+                start = mid + 1
+
+            else:
+                end = mid
+
+        peak = start
+
+        #right side
+
+        start, end = peak, n - 1
+
+        while start <= end:
+            mid = start + (end - start) // 2
+            num = mountainArr.get(mid)
+
+            if num == target:
+                return mid
+
+            elif num < target:
+                start = mid + 1
+
+            else:
+                end = mid - 1
+
+        #left side
+
+        start, end = 0, peak
+
+        while start <= end:
+            mid = start + (end - start) // 2
+            num = mountainArr.get(mid)
+
+            if num == target:
+                return mid
+
+            elif num < target:
+                start = mid + 1
+
+            else:
+                end = mid - 1
+
+        return -1 
+                
+
+
+
+        
+
+
+        

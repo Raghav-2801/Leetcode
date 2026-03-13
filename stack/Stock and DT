@@ -1,0 +1,32 @@
+def stock(arr):
+    n = len(arr)
+    result = []
+    stack = []
+    for i,num in enumerate(arr):
+        while stack and stack[-1][1] <= num:
+            stack.pop()
+        result.append((i - stack[-1][0]) if stack else i + 1)
+        stack.append((i,num))
+        
+    return result
+    
+    
+arr = [100, 80, 60, 120] #Output: [1, 1, 1, 4]
+print(stock(arr))
+
+def DailyTemp(temps):
+    n = len(temps)
+    result = [0] * n
+    stack = []
+    
+    for i, num in enumerate(temps):
+        while stack and stack[-1][1] < num:
+            prev, _ = stack.pop()
+            result[prev] = i - prev
+        stack.append((i,num))
+        
+    return result
+
+temps = [65, 70, 68, 60, 55, 75, 80, 74]
+#output: [1,4,3,2,1,1,0,0]
+print(DailyTemp(temps))

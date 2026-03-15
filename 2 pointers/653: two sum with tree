@@ -1,0 +1,38 @@
+class Solution:
+    def findTarget(self, root, k):
+        seen = set()
+
+        def dfs(node):
+            if not node:
+                return False
+            complement = k - node.val
+            if complement in seen:
+                print(f"Pair found: {complement} and {node.val}")  # ✅ print values
+                return True
+            seen.add(node.val)
+            return dfs(node.left) or dfs(node.right)
+
+        return dfs(root)
+
+
+
+def findTarget(self, root, k):
+    def inorder(node):
+        if not node:
+            return []
+        return inorder(node.left) + [node.val] + inorder(node.right)
+
+    nums = inorder(root)  # [2, 3, 4, 5, 6, 7]
+    left, right = 0, len(nums) - 1
+
+    while left < right:
+        current_sum = nums[left] + nums[right]
+        if current_sum == k:
+            print(f"Indices: [{left}, {right}], Values: [{nums[left]}, {nums[right]}]")
+            return True
+        elif current_sum < k:
+            left += 1
+        else:
+            right -= 1
+
+    return False

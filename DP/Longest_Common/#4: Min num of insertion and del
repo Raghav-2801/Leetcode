@@ -1,10 +1,9 @@
-| Operation                 | Formula | Meaning                                 |
-| ------------------------- | ------- | --------------------------------------- |
-| Min Deletions from word1  | n - lcs | Remove chars in word1 not in LCS        |
-| Min Deletions from word2  | m - lcs | Remove chars in word2 not in LCS        |
-| Min Insertions into word1 | m - lcs | Insert word2's missing chars into word1 |
-| Min Insertions into word2 | n - lcs | Insert word1's missing chars into word2 |
-
+| Problem                                          | Formula         |
+| ------------------------------------------------ | --------------- |
+| Min deletions to make equal (this problem)       | n + m - 2 * lcs |
+| Min insertions to make word1 = word2             | m - lcs         |
+| Min deletions to make word1 = word2 (only word1) | n - lcs         |
+| Shortest Common Supersequence length             | n + m - lcs     |
 
 583 leetcode
 
